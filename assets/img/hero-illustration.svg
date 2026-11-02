@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 400" fill="none">
+  <style>
+    .spin { transform-origin: 260px 190px; animation: spin 40s linear infinite; }
+    .bob  { animation: bob 5s ease-in-out infinite; }
+    .bob2 { animation: bob 6s ease-in-out -2s infinite; }
+    .tw   { animation: tw 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .tw2  { animation: tw 3.2s ease-in-out -1s infinite; transform-box: fill-box; transform-origin: center; }
+    .sway { transform-origin: 100px 330px; animation: sway 6s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bob  { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @keyframes tw   { 0%,100% { opacity: .35; transform: scale(.7); } 50% { opacity: 1; transform: scale(1.15); } }
+    @keyframes sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+  </style>
+  <defs>
+    <linearGradient id="globe" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fb0ff"/><stop offset="1" stop-color="#2447c9"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe08f"/><stop offset="1" stop-color="#f2a81d"/></linearGradient>
+    <linearGradient id="lotus" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd1e6"/><stop offset="1" stop-color="#f06aa6"/></linearGradient>
+  </defs>
+
+  <circle cx="260" cy="200" r="178" fill="#fff" opacity=".07"/>
+  <circle cx="260" cy="200" r="132" fill="#fff" opacity=".07"/>
+
+  <!-- globe -->
+  <g class="bob">
+    <circle cx="260" cy="170" r="104" fill="url(#globe)"/>
+    <g class="spin" opacity=".95">
+      <ellipse cx="260" cy="190" rx="104" ry="36" stroke="#fff" stroke-opacity=".35" stroke-width="2" transform="translate(0 -20)"/>
+      <ellipse cx="260" cy="190" rx="52" ry="104" stroke="#fff" stroke-opacity=".35" stroke-width="2" transform="translate(0 -20)"/>
+      <path d="M232 120c14-14 36-10 42 4 6 14-12 20-8 34 4 14-22 24-30 8-8-16-16-30-4-46z" fill="#7be0b0" opacity=".9"/>
+      <path d="M296 190c16-6 30 6 26 22-4 16-24 20-30 8-6-12-10-24 4-30z" fill="#7be0b0" opacity=".9"/>
+      <path d="M206 206c10-4 18 4 14 14s-16 10-18 2c-2-8 0-14 4-16z" fill="#7be0b0" opacity=".9"/>
+    </g>
+    <path d="M178 120a104 104 0 0 1 60-52" stroke="#fff" stroke-opacity=".5" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="260" cy="170" r="104" stroke="#fff" stroke-opacity=".5" stroke-width="3"/>
+  </g>
+
+  <!-- books -->
+  <g class="bob2">
+    <rect x="316" y="296" width="150" height="26" rx="6" fill="#f2a81d"/>
+    <rect x="326" y="270" width="136" height="26" rx="6" fill="#ef5b6a" transform="rotate(-2 394 283)"/>
+    <rect x="320" y="244" width="128" height="26" rx="6" fill="#2fbf8a" transform="rotate(2 384 257)"/>
+    <rect x="334" y="218" width="112" height="26" rx="6" fill="#fff"/>
+    <path d="M345 231h60" stroke="#26409f" stroke-width="5" stroke-linecap="round"/>
+    <path d="M326 309h132" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- clipboard / check -->
+  <g class="bob" style="animation-delay:-3s">
+    <rect x="36" y="218" width="128" height="148" rx="16" fill="#fff"/>
+    <rect x="70" y="206" width="60" height="24" rx="8" fill="url(#gold)"/>
+    <g stroke-linecap="round" stroke-linejoin="round">
+      <path d="M58 262l8 8 14-16" stroke="#0f9d58" stroke-width="6"/><path d="M96 262h50" stroke="#c9d2ee" stroke-width="6"/>
+      <path d="M58 296l8 8 14-16" stroke="#0f9d58" stroke-width="6"/><path d="M96 296h40" stroke="#c9d2ee" stroke-width="6"/>
+      <path d="M58 330l8 8 14-16" stroke="#0f9d58" stroke-width="6"/><path d="M96 330h46" stroke="#c9d2ee" stroke-width="6"/>
+    </g>
+  </g>
+
+  <!-- lotus -->
+  <g class="sway" transform="translate(205 0)">
+    <path d="M100 340c-34-8-52-34-48-56 22 4 40 20 48 56z" fill="url(#lotus)"/>
+    <path d="M100 340c34-8 52-34 48-56-22 4-40 20-48 56z" fill="url(#lotus)"/>
+    <path d="M100 340c-18-18-22-46 0-76 22 30 18 58 0 76z" fill="#ff8fbd"/>
+    <path d="M100 344c-22 2-46-6-56-24 24-4 46 6 56 24z" fill="#f9a8cd"/>
+    <path d="M100 344c22 2 46-6 56-24-24-4-46 6-56 24z" fill="#f9a8cd"/>
+    <ellipse cx="100" cy="350" rx="40" ry="8" fill="#0b1b46" opacity=".25"/>
+  </g>
+
+  <!-- sparkles -->
+  <path class="tw" d="M70 100l5 14 14 5-14 5-5 14-5-14-14-5 14-5z" fill="#ffd978"/>
+  <path class="tw2" d="M455 90l4 11 11 4-11 4-4 11-4-11-11-4 11-4z" fill="#fff"/>
+  <path class="tw" style="animation-delay:-.8s" d="M410 170l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#ffd978"/>
+  <circle class="tw2" cx="130" cy="60" r="5" fill="#fff"/>
+  <circle class="tw" cx="480" cy="230" r="4" fill="#ffd978"/>
+</svg>

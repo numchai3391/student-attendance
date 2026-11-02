@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ระบบเช็คชื่อ | ครูนำชัย หอมแก่นจัน</title>
+  <meta name="theme-color" content="#0b1b46">
+  <link rel="icon" href="assets/img/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="loader" id="loader"></div>
+  <div class="bg-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="brand">
+        <img class="logo" src="assets/img/logo.png" alt="โลโก้" onerror="this.onerror=null;this.src='assets/img/logo.svg'">
+        <div class="brand-text">
+          <h1>ระบบเช็คชื่อ</h1>
+          <p class="by">โดย ครูนำชัย หอมแก่นจัน</p>
+          <p class="dept">กลุ่มสาระการเรียนรู้สังคมศึกษา ศาสนา และวัฒนธรรม</p>
+        </div>
+      </div>
+      <img class="hero-art" src="assets/img/hero-illustration.svg" alt="">
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <div class="wrap tabs-inner">
+      <div class="tab-list" role="tablist">
+        <button class="tab on" data-page="attend" role="tab">เช็คชื่อ</button>
+        <button class="tab" data-page="scan" role="tab">สแกนบาร์โค้ด</button>
+        <button class="tab" data-page="summary" role="tab">สรุปข้อมูล</button>
+      </div>
+      <div class="tab-tools">
+        <span class="demo-badge" id="demoBadge" hidden>โหมดตัวอย่าง</span>
+        <button class="tool" id="btnZoom" title="ขยายตัวอักษรสำหรับโปรเจคเตอร์" aria-label="ขยายตัวอักษร">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel ctx" id="ctx">
+      <label class="f f-subject"><span>รายวิชา</span><select id="selSubject"></select></label>
+      <label class="f f-class"><span>ชั้น</span><select id="selClass"></select></label>
+      <label class="f f-date" data-need="session"><span>วัน / เดือน / ปี</span><input type="date" id="inDate"></label>
+      <div class="f f-period" data-need="session"><span>คาบเรียน</span><div class="periods" id="periods"></div></div>
+    </section>
+
+    <section class="banner" id="banner"></section>
+
+    <!-- เช็คชื่อ -->
+    <section class="page" id="pg-attend">
+      <div class="panel roster-card">
+        <div class="roster-head">
+          <h2>รายชื่อนักเรียน <small class="exist" id="existBadge" hidden>บันทึกไว้แล้ว · แก้ไขได้</small></h2>
+          <div class="bulk" id="bulk">
+            <span class="bulk-l">ทั้งห้อง</span>
+            <button class="bulk-b s-ok" data-bulk="มา">มาทั้งห้อง</button>
+            <button class="bulk-b s-late" data-bulk="สาย">สายทั้งห้อง</button>
+            <button class="bulk-b s-absent" data-bulk="ขาด">ขาดทั้งห้อง</button>
+            <button class="bulk-b s-leave" data-bulk="ลา">ลาทั้งห้อง</button>
+          </div>
+        </div>
+        <div id="roster"></div>
+      </div>
+      <div class="savebar" id="savebar" hidden>
+        <div class="counts" id="counts"></div>
+        <button class="btn-save" id="btnSave">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+          <span>บันทึกการเช็คชื่อ</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- สแกนบาร์โค้ด -->
+    <section class="page" id="pg-scan" hidden>
+      <div class="scan-grid">
+        <div class="panel scan-main">
+          <div class="mode" id="modeSeg">
+            <button data-mode="attend" class="on">เช็คชื่อ</button>
+            <button data-mode="score">เก็บคะแนน</button>
+          </div>
+          <div class="mode-opts" id="modeOpts"></div>
+          <label class="scan-input">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6v12M8 6v12M12 6v12M16 6v12M20 6v12" stroke-dasharray="1 0"/></svg>
+            <input id="scanInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="สแกนบาร์โค้ดรหัสนักเรียน">
+          </label>
+          <div class="scan-result idle" id="scanResult"></div>
+        </div>
+        <div class="panel scan-side">
+          <div class="scan-prog" id="scanProg"></div>
+          <h3>สแกนล่าสุด</h3>
+          <ul class="scan-list" id="scanList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- สรุป -->
+    <section class="page" id="pg-summary" hidden>
+      <div class="stat-row" id="sumStats"></div>
+      <div class="panel"><div class="tbl-wrap" id="sumTable"></div></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">ระบบเช็คชื่อ โดย ครูนำชัย หอมแก่นจัน · กลุ่มสาระการเรียนรู้สังคมศึกษา ศาสนา และวัฒนธรรม</div>
+  </footer>
+
+  <div class="toast-wrap" id="toast" aria-live="polite"></div>
+  <div class="modal" id="modal" hidden><div class="modal-card" id="modalCard"></div></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
